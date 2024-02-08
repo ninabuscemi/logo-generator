@@ -30,33 +30,40 @@ async function getUserInput() {
 }
 
 function generateSVG({ text, textColor, shape, shapeColor }) {
-    const svgHeader = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">`;
-    let svgShape = '';
-    let svgText = '';
-
-    // Shape Center
-    const centerX = 150;
-    const centerY = 100;
+    let shapeObject;
 
     switch (shape) {
         case 'circle':
-            const radius = 50; 
-            svgShape = `<circle cx="${centerX}" cy="${centerY}" r="${radius}" fill="${shapeColor}" />`;
-            svgText = `<text x="${centerX}" y="${centerY}" font-size="20" text-anchor="middle" dominant-baseline="central" fill="${textColor}">${text}</text>`;
+            shapeObject = new Circle(shapeColor);
             break;
         case 'triangle':
-            const triangleHeight = 86.6025;
-            svgShape = `<polygon points="${centerX},${centerY - triangleHeight / 2} ${centerX - 50},${centerY + triangleHeight / 2} ${centerX + 50},${centerY + triangleHeight / 2}" fill="${shapeColor}" />`;
-            svgText = `<text x="${centerX}" y="${centerY + 10}" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="${textColor}">${text}</text>`;
+            shapeObject = new Triangle(shapeColor);
             break;
         case 'square':
-            const squareSize = 100;
-            svgShape = `<rect x="${centerX - squareSize / 2}" y="${centerY - squareSize / 2}" width="${squareSize}" height="${squareSize}" fill="${shapeColor}" />`;
-            svgText = `<text x="${centerX}" y="${centerY}" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="${textColor}">${text}</text>`;
+            shapeObject = new Square(shapeColor);
             break;
+        default:
+            throw new Error('Invalid shape');
     }
 
+    const svgHeader = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">`;
     const svgFooter = `</svg>`;
+
+    const svgShape = shapeObject.draw();
+    const svgText = `<text x="150" y="100" font-size="20" text-anchor="middle" dominant-baseline="central" fill="${textColor}">${text}</text>`;
 
     return svgHeader + svgShape + svgText + svgFooter;
 }
+
+async function main() {
+    try {
+        const userInput = await getUserInput();
+        const svgContent = generateSVG(userInput);
+        fs.writeFileSync('logo.svg', svgContent);
+        console.log('Logo generated successfully!');
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+
+main();
