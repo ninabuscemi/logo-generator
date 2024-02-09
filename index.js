@@ -45,7 +45,6 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
     case 'triangle':
       const triangleWidth = 200;
       svgShape = new Triangle(shapeColor).render();
-      // Adjust only the text coordinates for the triangle
       textY += 48;
       textX += 48;
       break;
@@ -64,8 +63,8 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
   try {
     const userInput = await getUserInput();
     const svgContent = generateSVG(userInput);
-    const timestamp = Date.now(); // Get current timestamp
-    const filePath = `./examples/logo_${timestamp}.svg`; // Includes timestamp in filename
+    const timestamp = Date.now();
+    const filePath = `./examples/logo_${timestamp}.svg`;
     fs.writeFileSync(filePath, svgContent);
     console.log('Logo generated successfully!');
   } catch (error) {
