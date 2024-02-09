@@ -1,46 +1,49 @@
 const fs = require('fs');
-const { default: inquirer } = await import('inquirer');
+const { Circle, Triangle, Square } = require('./lib/shapes');
 
-async function getUserInput() {
+async function run() {
+  const { default: inquirer } = await import('inquirer');
+
+  async function getUserInput() {
     const answers = await inquirer.prompt([
-        {
-            name: 'text',
-            type: 'input',
-            message: 'Enter One to three characters for the logo:',
-            validate: input => input.length <= 3
-        },
-        {
-            name: 'textColor',
-            type: 'input',
-            message: 'Enter a color keyword or hexadecimal for your preferred text color:'
-        },
-        {
-            name: 'shape',
-            type: 'list',
-            message: 'Choose a Preferred shape:',
-            choices: ['circle', 'triangle', 'square']
-        },
-        {
-            name: 'shapeColor',
-            type: 'input',
-            message: 'Enter a color keyword or hexadecimal for shape color:'
-        }
+      {
+        name: 'text',
+        type: 'input',
+        message: 'Enter One to three characters for the logo:',
+        validate: input => input.length <= 3
+      },
+      {
+        name: 'textColor',
+        type: 'input',
+        message: 'Enter a color keyword or hexadecimal for your preferred text color:'
+      },
+      {
+        name: 'shape',
+        type: 'list',
+        message: 'Choose a Preferred shape:',
+        choices: ['circle', 'triangle', 'square']
+      },
+      {
+        name: 'shapeColor',
+        type: 'input',
+        message: 'Enter a color keyword or hexadecimal for shape color:'
+      }
     ]);
     return answers;
-}
+  }
 
 function generateSVG({ text, textColor, shape, shapeColor }) {
     let shapeObject;
 
     switch (shape) {
         case 'circle':
-            shapeObject = new Circle(shapeColor);
+            shapeObject = new Circle(50, shapeColor);
             break;
         case 'triangle':
-            shapeObject = new Triangle(shapeColor);
+            shapeObject = new Triangle(100, shapeColor);
             break;
         case 'square':
-            shapeObject = new Square(shapeColor);
+            shapeObject = new Square(100, shapeColor);
             break;
         default:
             throw new Error('Invalid shape');
@@ -55,15 +58,19 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
     return svgHeader + svgShape + svgText + svgFooter;
 }
 
-async function main() {
+  async function main() {
     try {
-        const userInput = await getUserInput();
-        const svgContent = generateSVG(userInput);
-        fs.writeFileSync('logo.svg', svgContent);
-        console.log('Logo generated successfully!');
+      const userInput = await getUserInput();
+      const svgContent = generateSVG(userInput);
+      const filePath = './examples/logo.svg';
+      fs.writeFileSync(filePath, svgContent);
+      console.log('Logo generated successfully!');
     } catch (error) {
-        console.error('Error:', error.message);
+      console.error('Error:', error.message);
     }
+  }
+
+  await main();
 }
 
-main();
+run();
