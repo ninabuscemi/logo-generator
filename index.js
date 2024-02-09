@@ -17,33 +17,38 @@ async function run() {
         type: 'input',
         message: 'Enter a color keyword or hexadecimal for your preferred text color:'
       },
+ 
+      {
+        name: 'shapeColor',
+        type: 'input',
+        message: 'Enter a color keyword or hexadecimal for shape color:'
+      },
       {
         name: 'shape',
         type: 'list',
         message: 'Choose a Preferred shape:',
         choices: ['circle', 'triangle', 'square']
       },
-      {
-        name: 'shapeColor',
-        type: 'input',
-        message: 'Enter a color keyword or hexadecimal for shape color:'
-      }
     ]);
     return answers;
   }
 
 function generateSVG({ text, textColor, shape, shapeColor }) {
     let shapeObject;
+    let shapeSize;
 
     switch (shape) {
         case 'circle':
-            shapeObject = new Circle(50, shapeColor);
+            shapeSize = 200; // Adjust the size of the circle
+            shapeObject = new Circle(shapeSize / 2, shapeColor); // Set the radius as half the size
             break;
         case 'triangle':
-            shapeObject = new Triangle(100, shapeColor);
+            shapeSize = 200; // Adjust the size of the triangle
+            shapeObject = new Triangle(shapeSize, shapeColor); // Use the size directly for the triangle
             break;
         case 'square':
-            shapeObject = new Square(100, shapeColor);
+            shapeSize = 200; // Adjust the size of the square
+            shapeObject = new Square(shapeSize, shapeColor); // Use the size directly for the square
             break;
         default:
             throw new Error('Invalid shape');
@@ -52,8 +57,18 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
     const svgHeader = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">`;
     const svgFooter = `</svg>`;
 
-    const svgShape = shapeObject.draw();
-    const svgText = `<text x="150" y="100" font-size="20" text-anchor="middle" dominant-baseline="central" fill="${textColor}">${text}</text>`;
+
+    const centerX = 100;
+    const centerY = 100;
+
+
+    const shapeX = centerX - (shapeSize / 2);
+    const shapeY = centerY - (shapeSize / 2);
+    const textX = centerX;
+    const textY = centerY;
+
+    const svgShape = shapeObject.draw(shapeX, shapeY); // Pass the position of the shape
+    const svgText = `<text x="${textX}" y="${textY}" font-size="60" text-anchor="middle" dominant-baseline="central" fill="${textColor}">${text}</text>`; // Set the position of the text
 
     return svgHeader + svgShape + svgText + svgFooter;
 }
