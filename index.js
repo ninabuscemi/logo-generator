@@ -69,7 +69,8 @@ async function runLogoGenerator() {
   try {
     const userInput = await getUserInput();
     const svgContent = generateSVG(userInput);
-    const filePath = './examples/logo.svg';
+    const timestamp = Date.now(); // Get current timestamp
+    const filePath = `./examples/logo_${timestamp}.svg`; // Include timestamp in filename
     fs.writeFileSync(filePath, svgContent);
     console.log('Logo generated successfully!');
   } catch (error) {
