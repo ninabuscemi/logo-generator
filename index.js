@@ -1,5 +1,5 @@
 const fs = require('fs');
-const inquirer = require('inquirer');
+const { default: inquirer } = await import('inquirer');
 
 async function getUserInput() {
     const answers = await inquirer.prompt([
