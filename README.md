@@ -27,6 +27,18 @@ AND the output text "Generated logo.svg" is printed in the command line
 WHEN I open the `logo.svg` file in a browser
 THEN I am shown a 300x200 pixel image that matches the criteria I entered
 
+## Installation
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory in the terminal.
+3. Run npm install to install the required dependencies.
+4. Run the application using node index.js.
+
+To run the application, use the following command:
+
+node index.js
+The command line application will generate questions about your SVG logo: file name, text info, text color, logo shape, and logo color.
+
 ## Contributing
 
 Contributions to the ReadMe-Print Generator are welcome! If you find any issues or have suggestions for improvements, please submit a pull request. Make sure to follow the repository's code style and guidelines.

@@ -61,14 +61,16 @@ function generateSVG({ text, textColor, shape, shapeColor }) {
 }
 
   try {
+    let counter = 1;
+    
     const userInput = await getUserInput();
     const svgContent = generateSVG(userInput);
-    const timestamp = Date.now();
-    const filePath = `./examples/logo_${timestamp}.svg`;
+    const fileName = `logo_${userInput.text}_${counter++}.svg`;
+    const filePath = `./examples/${fileName}`;
     fs.writeFileSync(filePath, svgContent);
     console.log('Logo generated successfully!');
   } catch (error) {
-    console.error('Error:', error.message);
+        console.error('Error:', error.message);
   }
 
   const circle = new Circle(50, 'red');
