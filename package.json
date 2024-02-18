@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "inquirer": "^9.2.14"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
