@@ -29,7 +29,9 @@ THEN I am shown a 300x200 pixel image that matches the criteria I entered
 
 ## Demo
 
+Video walkthrough of installation and usage:
 
+https://drive.google.com/file/d/1RFJtHLgiqzefy3NmV3LzmQglqTEYgaSV/view?usp=sharing
 
 ## Installation
 
