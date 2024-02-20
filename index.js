@@ -83,8 +83,9 @@ async function runLogoGenerator() {
     const userInput = await getUserInput();
     // Generating SVG content based on user input
     const svgContent = generateSVG(userInput);
-    // Constructing file name based on input and counter
-    const fileName = `logo_${userInput.text}_${counter}.svg`;
+    // Constructing file name based on input, current timestamp, and counter
+    const timestamp = Date.now(); // Current timestamp
+    const fileName = `logo_${userInput.text}_${timestamp}_${counter}.svg`; // Appending counter to ensure uniqueness
     // Constructing file path
     const filePath = `./examples/${fileName}`;
     // Writing SVG content to file
