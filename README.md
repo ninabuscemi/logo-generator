@@ -1,43 +1,60 @@
-# Logo Generator
+# Logo Generator ![License Badge](https://badgen.net/static/license/MIT/blue)
+
+![Node.js](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 
 ## Description
 
-Logo Generator is a Node.js command-line application that takes in user input to generate a logo and save it as an SVG file. This application prompts the user to select a color and shape, provide text for the logo, and save the generated SVG to a .svg file.
+This is a command-line application that takes in user input from prompts using node.js to generate a logo and save it as an SVG file.
 
-## User Story 
+## Table of Contents
 
-AS a freelance web developer
-I WANT to generate a simple logo for my projects
-SO THAT I don't have to pay a graphic designer
-
-## Acceptance Criteria
-
-GIVEN a command-line application that accepts user input
-WHEN I am prompted for text
-THEN I can enter up to three characters
-WHEN I am prompted for the text color
-THEN I can enter a color keyword (OR a hexadecimal number)
-WHEN I am prompted for a shape
-THEN I am presented with a list of shapes to choose from: circle, triangle, and square
-WHEN I am prompted for the shape's color
-THEN I can enter a color keyword (OR a hexadecimal number)
-WHEN I have entered input for all the prompts
-THEN an SVG file is created named `logo.svg`
-AND the output text "Generated logo.svg" is printed in the command line
-WHEN I open the `logo.svg` file in a browser
-THEN I am shown a 300x200 pixel image that matches the criteria I entered
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [License](#license)
+- [Questions](#questions)
 
 ## Demo
 
-!["This generator creates a new logo everytime node is intiated."](./demo/logo_gen_demo.gif)
+Click [here](./demo/logo_gen_demo.gif) to watch a walkthrough demonstration of the application!
 
 ## Installation
 
-1. Clone the repository to your local machine.
-2. Navigate to the project directory in the terminal.
-3. Run npm install to install the required dependencies.
-4. Run the application using node index.js.
+[Download](https://github.com/ninabuscemi/logo-generator) or clone the repository:
 
-## Contributing
+    ```
+    git clone git@github.com:ninabuscemi/logo-generator.git
+    ```
 
-Contributions to the ReadMe-Print Generator are welcome! If you find any issues or have suggestions for improvements, please submit a pull request. Make sure to follow the repository's code style and guidelines.
+## Usage 
+
+1. Navigate to the project directory in the terminal.
+2. Open the terminal and run commands:
+     
+    ```
+    npm install
+    ```
+    ``` 
+    node index.js
+3. Answer the prompts to generate your logo! 
+
+## Features
+
+This application will prompt the user to: 
+
+- Select a color and shape
+- Provide text for the logo
+- Generate a logo based on the user's input and save it as an SVG file
+- Save the generated SVG file to the same or custom directory as the application
+
+## License
+
+The project is under MIT License.
+
+## Questions
+
+If you have any questions regarding the project, please, feel free to contact me:
+
+- GitHub: [Nina Buscemi](https://github.com/ninabuscemi)

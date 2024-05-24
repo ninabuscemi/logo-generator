@@ -1,4 +1,4 @@
-node_modles/
+node_modules/
 *.log
 *.tmp
 *.tmp.*
